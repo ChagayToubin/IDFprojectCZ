@@ -1,0 +1,14 @@
+C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\IDFprojectC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\IDFprojectC.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\IDFprojectC.AssemblyInfo.cs
+C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\IDFprojectC.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\IDFprojectC\bin\Debug\net8.0\IDFprojectC.exe
+C:\Users\User\source\repos\IDFprojectC\bin\Debug\net8.0\IDFprojectC.deps.json
+C:\Users\User\source\repos\IDFprojectC\bin\Debug\net8.0\IDFprojectC.runtimeconfig.json
+C:\Users\User\source\repos\IDFprojectC\bin\Debug\net8.0\IDFprojectC.dll
+C:\Users\User\source\repos\IDFprojectC\bin\Debug\net8.0\IDFprojectC.pdb
+C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\IDFprojectC.dll
+C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\refint\IDFprojectC.dll
+C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\IDFprojectC.pdb
+C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\IDFprojectC.genruntimeconfig.cache
+C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\ref\IDFprojectC.dll
