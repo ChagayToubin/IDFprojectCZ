@@ -19,6 +19,7 @@ namespace Idf
             DateOfEstablishment = dateOfEstablishment;
             CurrentCommander = currentCommander;
             ListTerrorist = listTerrorist;
+            Console.WriteLine("sasa");
         }
 
 
