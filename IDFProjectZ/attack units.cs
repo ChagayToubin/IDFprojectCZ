@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace IDFProject.attack_units
+
+namespace Idf
 {
     public class AttackUnits
     {
@@ -17,7 +18,7 @@ namespace IDFProject.attack_units
         public int CurrentAmmunitionQuantity;
         public int AttacksAtSameTime;
         public string PoweredBy;
-        public AttackUnits(string typeUnit, int fuelSupply, string typeBomb=null, int maximumArmaments=1, int currentAmmunitionQuantity = 1, int attacksAtSameTime=1, string poweredBy = null)
+        public AttackUnits(string typeUnit, int fuelSupply,  int currentAmmunitionQuantity, string typeBomb=null, int maximumArmaments=1 , int attacksAtSameTime=1, string poweredBy = null)
         {
             TypeUnit = typeUnit.ToLower();
             FuelSupply = fuelSupply;

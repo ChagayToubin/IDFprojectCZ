@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IDFProjectZ")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+55de27eceda47658eb587bccd3185c177541306c")]
 [assembly: System.Reflection.AssemblyProductAttribute("IDFProjectZ")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IDFProjectZ")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using IDFProject.attack_units;
-using IDFProject;
-namespace IDFProject.idf;
+namespace Idf;
 
 public class IdfMain
 {
@@ -21,5 +19,24 @@ public class IdfMain
     public void AddAttackUnit(AttackUnits attack_unit)
     {
         AtackUnits.Add(attack_unit);
+    }
+    public void ShowAvailableUnits()
+    {
+        foreach (var i in AtackUnits)
+        {
+            if (i.CurrentAmmunitionQuantity > 0)
+            {
+                Console.WriteLine(i.TypeUnit);
+            }
+        }
+    }
+    public AttackUnits SelectUnitByLocation(string location)
+    {
+        foreach (var i in AtackUnits)
+        {
+            if (i.EffectiveAgainst.Contains(location))
+                return i;
+        }
+        return AtackUnits[0];
     }
 }

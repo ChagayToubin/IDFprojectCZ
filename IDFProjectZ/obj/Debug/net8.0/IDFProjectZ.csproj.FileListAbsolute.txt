@@ -1,0 +1,15 @@
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\obj\Debug\net8.0\IDFProjectZ.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\obj\Debug\net8.0\IDFProjectZ.AssemblyInfoInputs.cache
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\obj\Debug\net8.0\IDFProjectZ.AssemblyInfo.cs
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\obj\Debug\net8.0\IDFProjectZ.csproj.CoreCompileInputs.cache
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\obj\Debug\net8.0\IDFProjectZ.sourcelink.json
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\bin\Debug\net8.0\IDFProjectZ.exe
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\bin\Debug\net8.0\IDFProjectZ.deps.json
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\bin\Debug\net8.0\IDFProjectZ.runtimeconfig.json
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\bin\Debug\net8.0\IDFProjectZ.dll
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\bin\Debug\net8.0\IDFProjectZ.pdb
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\obj\Debug\net8.0\IDFProjectZ.dll
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\obj\Debug\net8.0\refint\IDFProjectZ.dll
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\obj\Debug\net8.0\IDFProjectZ.pdb
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\obj\Debug\net8.0\IDFProjectZ.genruntimeconfig.cache
+C:\Users\HOME\source\repos\IDFProjectZ\IDFProjectZ\obj\Debug\net8.0\ref\IDFProjectZ.dll
