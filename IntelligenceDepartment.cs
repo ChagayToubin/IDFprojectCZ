@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+
 
 namespace Idf
 {
@@ -30,17 +32,16 @@ namespace Idf
             string conver;
             foreach (var item in hamas.ListTerrorist)
             {
-                conver = DateTime.UtcNow.ToString(); 
-
-                if (!item.TimeLocatiom.ContainsKey(conver))
-                {
-                    item.TimeLocatiom[conver] = new List<string>(); 
-                }
-
-                item.TimeLocatiom[conver].Add(message[rnd.Next(0, 4)]);
+                conver = DateTime.UtcNow.ToString();
+                Thread.Sleep(100);
+                item.TimeLocatiom[conver] = message[rnd.Next(0, 4)];
 
             }
-            //hamas.ListTerrorist[2].TimeLocatiom.First().Value.Add("check if work");check if work
+            //foreach(var item in hamas.ListTerrorist)
+            //{
+            //    Console.WriteLine(item.TimeLocatiom.First().Key +" " + item.TimeLocatiom.First().Value);
+            //}
+            //hamas.ListTerrorist[2].TimeLocatiom.First().Value.Add("check if work");check if work  
         }
 
     }
