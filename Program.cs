@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel.Design;
+using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices.JavaScript;
+using System.Security.Cryptography.X509Certificates;
 
 
 namespace Idf
@@ -13,7 +16,7 @@ namespace Idf
         {
             Console.WriteLine("Hello, Weweworld!");
             initialization();
-           
+
         }
         public static void initialization()
         {
@@ -49,7 +52,7 @@ namespace Idf
                     PrepareUnits();
                     break;
                 case "3":
-                    PrioritizeTargets();
+                    TheMostDangerous();
                     break;
                 case "4":
                     ExecuteStrike();
@@ -63,13 +66,15 @@ namespace Idf
                     Console.ReadKey();
                     ShowMainMenu();
                     break;
-
+                    
             }
+            ShowMainMenu();
+
         }
 
         static void TheMostMessages()
         {
-            Terrorist Mostmessagetero= IntelligenceDepartmentt.hamas.ListTerrorist[0];
+            Terrorist Mostmessagetero = IntelligenceDepartmentt.hamas.ListTerrorist[0];
             int countTMost = 0;
 
             foreach (var item in IntelligenceDepartmentt.hamas.ListTerrorist)
@@ -86,13 +91,43 @@ namespace Idf
 
         static void PrepareUnits()
         {
-            Console.WriteLine("🛩️ Displaying attack units and readiness...");
-            // Add your unit preparation logic here
+            Console.WriteLine("");
         }
 
-        static void PrioritizeTargets()
+        static void TheMostDangerous()//חגי 
         {
-            
+            Terrorist Mostmessagetero= IntelligenceDepartmentt.hamas.ListTerrorist[0];
+            int MostDangerScore = 0;
+
+            foreach (var item in IntelligenceDepartmentt.hamas.ListTerrorist)
+            {
+                if (PointCalculation(item.Weapon, item.Rank) > MostDangerScore)
+                {
+                    Mostmessagetero = item;
+                    MostDangerScore = PointCalculation(item.Weapon, item.Rank);
+                }
+
+            }
+            static int PointCalculation(List<string> Weapon, int Rank)
+            {
+
+                int calculation = 0;
+                if (Weapon.Contains("Knife"))
+                {
+                    calculation += 1;
+                }
+                if (Weapon.Contains("Handgun"))
+                {
+                    calculation += 2;
+                }
+                if( (Weapon.Contains("AK-47") || Weapon.Contains("M16")))
+                {
+                    calculation += 3;
+                }
+                return calculation * Rank;
+
+            }
+            Console.WriteLine(Mostmessagetero.Name);
         }
 
         static void ExecuteStrike()
@@ -102,7 +137,7 @@ namespace Idf
         }
 
 
-       
+
         static void PrintRed(string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -122,77 +157,77 @@ namespace Idf
 
             //List<Terrorist> listTerrorist = new List<Terrorist>();
 
-            Terrorist person1 = new Terrorist("Tariq Ahmad", 2, true, new List<string> { "Knife", "RPG", "Explosives" });
+            Terrorist person1 = new Terrorist("Tariq Ahmad", 2, true, new List<string> { "Knife", "Handgun" });
             listTerrorist.Add(person1);
-            Terrorist person2 = new Terrorist("Omar Ali", 5, true, new List<string> { "Handgun" });
+            Terrorist person2 = new Terrorist("Omar Ali", 5, true, new List<string> { "AK-47" });
             listTerrorist.Add(person2);
-            Terrorist person3 = new Terrorist("Khaled Fadi", 1, true, new List<string> { "M16", "Knife", "RPG" });
+            Terrorist person3 = new Terrorist("Khaled Fadi", 1, true, new List<string> { "M16", "Knife", "AK-47" });
             listTerrorist.Add(person3);
             Terrorist person4 = new Terrorist("Hassan Hassan", 3, true, new List<string> { "Knife" });
             listTerrorist.Add(person4);
-            Terrorist person5 = new Terrorist("Ibrahim Omar", 4, true, new List<string> { "Explosives", "AK-47" });
+            Terrorist person5 = new Terrorist("Ibrahim Omar", 4, true, new List<string> { "Handgun", "M16" });
             listTerrorist.Add(person5);
-            Terrorist person6 = new Terrorist("Ahmad Khaled", 2, true, new List<string> { "Grenade" });
+            Terrorist person6 = new Terrorist("Ahmad Khaled", 2, true, new List<string> { "Knife", "AK-47" });
             listTerrorist.Add(person6);
-            Terrorist person7 = new Terrorist("Ahmad Yasir", 1, true, new List<string> { "Explosives" });
+            Terrorist person7 = new Terrorist("Ahmad Yasir", 1, true, new List<string> { "M16" });
             listTerrorist.Add(person7);
-            Terrorist person8 = new Terrorist("Khaled Ali", 3, true, new List<string> { "Handgun", "AK-47", "Explosives" });
+            Terrorist person8 = new Terrorist("Khaled Ali", 3, true, new List<string> { "Handgun", "M16", "AK-47" });
             listTerrorist.Add(person8);
-            Terrorist person9 = new Terrorist("Hassan Nabil", 5, true, new List<string> { "Knife", "Explosives" });
+            Terrorist person9 = new Terrorist("Hassan Nabil", 5, true, new List<string> { "Knife", "Handgun" });
             listTerrorist.Add(person9);
-            Terrorist person10 = new Terrorist("Ahmad Ibrahim", 2, true, new List<string> { "Knife", "Grenade", "RPG" });
+            Terrorist person10 = new Terrorist("Ahmad Ibrahim", 2, true, new List<string> { "M16", "AK-47", "Knife" });
             listTerrorist.Add(person10);
-            Terrorist person11 = new Terrorist("Tariq Ali", 4, true, new List<string> { "AK-47", "Grenade", "Explosives" });
+            Terrorist person11 = new Terrorist("Tariq Ali", 4, true, new List<string> { "AK-47", "Handgun" });
             listTerrorist.Add(person11);
-            Terrorist person12 = new Terrorist("Ahmad Yasir", 5, true, new List<string> { "Knife", "RPG", "M16" });
+            Terrorist person12 = new Terrorist("Ahmad Yasir", 1, true, new List<string> { "M16", "Knife" });
             listTerrorist.Add(person12);
-            Terrorist person13 = new Terrorist("Fadi Omar", 1, true, new List<string> { "Explosives", "M16", "Knife" });
+            Terrorist person13 = new Terrorist("Fadi Omar", 1, true, new List<string> { "AK-47", "Knife" });
             listTerrorist.Add(person13);
-            Terrorist person14 = new Terrorist("Hassan Fadi", 3, true, new List<string> { "Grenade" });
+            Terrorist person14 = new Terrorist("Hassan Fadi", 3, true, new List<string> { "Handgun" });
             listTerrorist.Add(person14);
             Terrorist person15 = new Terrorist("Tariq Khaled", 2, true, new List<string> { "Knife", "M16" });
             listTerrorist.Add(person15);
-            Terrorist person16 = new Terrorist("Fadi Yasir", 1, true, new List<string> { "AK-47", "RPG", "Knife" });
+            Terrorist person16 = new Terrorist("Fadi Yasir", 1, true, new List<string> { "AK-47", "Knife", "Handgun" });
             listTerrorist.Add(person16);
-            Terrorist person17 = new Terrorist("Ibrahim Ahmad", 4, true, new List<string> { "RPG", "Handgun" });
+            Terrorist person17 = new Terrorist("Ibrahim Ahmad", 4, true, new List<string> { "M16", "Handgun" });
             listTerrorist.Add(person17);
-            Terrorist person18 = new Terrorist("Tariq Fadi", 5, true, new List<string> { "Knife", "RPG", "AK-47" });
+            Terrorist person18 = new Terrorist("Tariq Fadi", 5, true, new List<string> { "Knife", "AK-47" });
             listTerrorist.Add(person18);
-            Terrorist person19 = new Terrorist("Ali Ahmad", 1, true, new List<string> { "Knife", "Explosives" });
+            Terrorist person19 = new Terrorist("Ali Ahmad", 1, true, new List<string> { "M16", "Knife" });
             listTerrorist.Add(person19);
-            Terrorist person20 = new Terrorist("Ahmad Ali", 3, true, new List<string> { "Explosives" });
+            Terrorist person20 = new Terrorist("Ahmad Ali", 3, true, new List<string> { "Handgun" });
             listTerrorist.Add(person20);
-            Terrorist person21 = new Terrorist("Ali Yasir", 4, true, new List<string> { "AK-47", "Explosives", "Handgun" });
+            Terrorist person21 = new Terrorist("Ali Yasir", 4, true, new List<string> { "M16", "Handgun", "Knife" });
             listTerrorist.Add(person21);
-            Terrorist person22 = new Terrorist("Ahmad Hassan", 2, true, new List<string> { "M16", "Explosives", "Knife" });
+            Terrorist person22 = new Terrorist("Ahmad Hassan", 2, true, new List<string> { "Knife", "M16" });
             listTerrorist.Add(person22);
-            Terrorist person23 = new Terrorist("Fadi Omar", 3, true, new List<string> { "Explosives", "Handgun" });
+            Terrorist person23 = new Terrorist("Fadi Omar", 3, true, new List<string> { "Handgun", "AK-47" });
             listTerrorist.Add(person23);
-            Terrorist person24 = new Terrorist("Tariq Ali", 1, true, new List<string> { "M16", "AK-47", "Knife" });
+            Terrorist person24 = new Terrorist("Tariq Ali", 1, true, new List<string> { "M16", "Knife", "AK-47" });
             listTerrorist.Add(person24);
-            Terrorist person25 = new Terrorist("Ibrahim Khaled", 2, true, new List<string> { "Handgun", "Explosives" });
+            Terrorist person25 = new Terrorist("Ibrahim Khaled", 2, true, new List<string> { "AK-47", "Handgun" });
             listTerrorist.Add(person25);
-            Terrorist person26 = new Terrorist("Ali Ali", 5, true, new List<string> { "Knife", "Explosives" });
+            Terrorist person26 = new Terrorist("Ali Ali", 5, true, new List<string> { "Knife", "M16" });
             listTerrorist.Add(person26);
-            Terrorist person27 = new Terrorist("Tariq Yasir", 1, true, new List<string> { "Explosives", "AK-47", "Knife" });
+            Terrorist person27 = new Terrorist("Tariq Yasir", 1, true, new List<string> { "AK-47", "Knife", "Handgun" });
             listTerrorist.Add(person27);
             Terrorist person28 = new Terrorist("Omar Fadi", 4, true, new List<string> { "AK-47" });
             listTerrorist.Add(person28);
-            Terrorist person29 = new Terrorist("Khaled Omar", 3, true, new List<string> { "Knife", "RPG" });
+            Terrorist person29 = new Terrorist("Khaled Omar", 3, true, new List<string> { "Knife", "M16" });
             listTerrorist.Add(person29);
             Terrorist person30 = new Terrorist("Khaled Khaled", 5, true, new List<string> { "M16" });
             listTerrorist.Add(person30);
-            Terrorist person31 = new Terrorist("Ali Ahmad", 4, true, new List<string> { "RPG" });
+            Terrorist person31 = new Terrorist("Ali Ahmad", 4, true, new List<string> { "AK-47" });
             listTerrorist.Add(person31);
-            Terrorist person32 = new Terrorist("Nabil Yasir", 2, true, new List<string> { "Explosives", "Handgun", "Knife" });
+            Terrorist person32 = new Terrorist("Nabil Yasir", 2, true, new List<string> { "Handgun", "Knife" });
             listTerrorist.Add(person32);
-            Terrorist person33 = new Terrorist("Fadi Khaled", 5, true, new List<string> { "Knife", "Handgun", "Explosives" });
+            Terrorist person33 = new Terrorist("Fadi Khaled", 5, true, new List<string> { "Knife", "Handgun" });
             listTerrorist.Add(person33);
             Terrorist person34 = new Terrorist("Khaled Khaled", 2, true, new List<string> { "Handgun", "Knife" });
             listTerrorist.Add(person34);
             Terrorist person35 = new Terrorist("Ali Ahmad", 1, true, new List<string> { "Knife" });
             listTerrorist.Add(person35);
-            Terrorist person36 = new Terrorist("Hassan Ahmad", 3, true, new List<string> { "RPG", "AK-47" });
+            Terrorist person36 = new Terrorist("Hassan Ahmad", 3, true, new List<string> { "M16", "AK-47" });
             listTerrorist.Add(person36);
 
 

@@ -30,7 +30,7 @@ namespace Idf
             string conver;
             foreach (var item in hamas.ListTerrorist)
             {
-                conver = DateTime.UtcNow.ToString("s"); // פורמט סטנדרטי וזיהוי אחיד
+                conver = DateTime.UtcNow.ToString(); // פורמט סטנדרטי וזיהוי אחיד
 
                 if (!item.TimeLocatiom.ContainsKey(conver))
                 {
