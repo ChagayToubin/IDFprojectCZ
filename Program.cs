@@ -127,7 +127,7 @@ namespace Idf
                 return calculation * Rank;
 
             }
-            Console.WriteLine(Mostmessagetero.Name);
+            Console.WriteLine(Mostmessagetero.Name +" " + Mostmessagetero.TimeLocatiom.First().Value[0]);
         }
 
         static void ExecuteStrike()
