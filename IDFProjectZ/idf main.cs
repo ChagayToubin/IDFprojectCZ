@@ -39,4 +39,27 @@ public class IdfMain
         }
         return AtackUnits[0];
     }
+
+    public void Disarmament(AttackUnits unit, int num_armaments)
+    {
+        if (ArmamentCapacityTest(unit, num_armaments))
+        {
+            unit.CurrentAmmunitionQuantity -= num_armaments;
+        }
+        else
+            Console.WriteLine($"There are not enough ammunition for the attack!! You are requesting the use of {num_armaments} ammunition and the vehicle is only loaded with {unit.CurrentAmmunitionQuantity} ammunition.");
+            
+            
+
+    }
+    
+    public void AmmunitionLoading(AttackUnits unit, int num_armaments)
+    {
+        unit.CurrentAmmunitionQuantity += num_armaments;
+    }
+
+    public bool ArmamentCapacityTest(AttackUnits unit, int num_armaments)
+    {
+        return (unit.CurrentAmmunitionQuantity - num_armaments) >= 0 ? true : false;
+    }
 }

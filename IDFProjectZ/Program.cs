@@ -11,6 +11,7 @@ namespace Idf
         public static Hamas hamas;
         public static IntelligenceDepartment IntelligenceDepartmentt;
         public static IdfMain IDF; //zalmen
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, Weweworld!");
@@ -66,7 +67,6 @@ namespace Idf
                     Console.ReadKey();
                     ShowMainMenu();
                     break;
-
             }
         }
 
@@ -87,11 +87,10 @@ namespace Idf
 
         }
 
+        //zalmen
         static void PrepareUnits()
         {
             IDF.ShowAvailableUnits();
-            Console.WriteLine("🛩️ Displaying attack units and readiness...");
-            // Add your unit preparation logic here
         }
 
         static void PrioritizeTargets()
@@ -101,7 +100,10 @@ namespace Idf
 
         static void ExecuteStrike()
         {
-            Console.WriteLine("🚀 Executing most suitable strike based on terrorist location and type...");
+            string location = "people"; //מצפה לקבל את המיקום של המחבל המיועד לתקיפה
+            AttackUnits SelectedUnit = IDF.SelectUnitByLocation(location); //מקבל את האבייקט של כלי התקיפה
+            Console.WriteLine(SelectedUnit.TypeUnit);
+            
             // Add your strike execution logic here
         }
 
