@@ -27,13 +27,20 @@ namespace Idf
 
             };
             Console.WriteLine("");
+            string conver;
             foreach (var item in hamas.ListTerrorist)
             {
-                item.TimeLocatiom[DateTime.UtcNow] = message[rnd.Next(0, 4)];
+                conver = DateTime.UtcNow.ToString("s"); // פורמט סטנדרטי וזיהוי אחיד
+
+                if (!item.TimeLocatiom.ContainsKey(conver))
+                {
+                    item.TimeLocatiom[conver] = new List<string>(); // יצירת רשימה חדשה למפתח הזה
+                }
+
+                item.TimeLocatiom[conver].Add(message[rnd.Next(0, 4)]);
 
             }
-            Console.WriteLine("1234567890");
-
+            //hamas.ListTerrorist[2].TimeLocatiom.First().Value.Add("check if work");check if work
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices.JavaScript;
+﻿using System.ComponentModel.Design;
+using System.Runtime.InteropServices.JavaScript;
 
 
 namespace Idf
@@ -11,12 +12,102 @@ namespace Idf
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, Weweworld!");
+            initialization();
+           
         }
         public static void initialization()
         {
             initializationTerroist();
             initializationhamas();
             initializationIntelligenceDepartment();
+            Menu();
+        }
+        public static void Menu()
+        {
+            ShowMainMenu();
+        }
+        static void ShowMainMenu()
+        {
+            PrintRed("========== IDF Strategic Operations Menu ==========");
+            Console.WriteLine("Welcome, Commander. Prepare to lead your team with precision.");
+            Console.WriteLine("Choose an operation to begin:");
+            Console.WriteLine("1. Intelligence Analysis");
+            Console.WriteLine("2. Attack Readiness");
+            Console.WriteLine("3. Target Prioritization");
+            Console.WriteLine("4. Attack Execution");
+            Console.WriteLine("5. Exit");
+            Console.Write("Enter your choice (1-5): ");
+
+            string input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "1":
+                    TheMostMessages();
+                    break;
+                case "2":
+                    PrepareUnits();
+                    break;
+                case "3":
+                    PrioritizeTargets();
+                    break;
+                case "4":
+                    ExecuteStrike();
+                    break;
+                case "5":
+                    Console.WriteLine("Exiting. Stay sharp, Commander.");
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Try again.");
+                    PrintRed("Press any button");
+                    Console.ReadKey();
+                    ShowMainMenu();
+                    break;
+
+            }
+        }
+
+        static void TheMostMessages()
+        {
+            Terrorist Mostmessagetero= IntelligenceDepartmentt.hamas.ListTerrorist[0];
+            int countTMost = 0;
+
+            foreach (var item in IntelligenceDepartmentt.hamas.ListTerrorist)
+            {
+                if (countTMost < item.TimeLocatiom.First().Value.Count)
+                {
+                    countTMost = item.TimeLocatiom.First().Value.Count;
+                    Mostmessagetero = item;
+                }
+            }
+            Console.WriteLine(Mostmessagetero.Name);
+
+        }
+
+        static void PrepareUnits()
+        {
+            Console.WriteLine("🛩️ Displaying attack units and readiness...");
+            // Add your unit preparation logic here
+        }
+
+        static void PrioritizeTargets()
+        {
+            
+        }
+
+        static void ExecuteStrike()
+        {
+            Console.WriteLine("🚀 Executing most suitable strike based on terrorist location and type...");
+            // Add your strike execution logic here
+        }
+
+
+       
+        static void PrintRed(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor(); // מחזיר לצבע ברירת מחדל
         }
         public static void initializationhamas()
         {
