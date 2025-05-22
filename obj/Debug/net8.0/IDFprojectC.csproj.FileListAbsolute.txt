@@ -12,3 +12,4 @@ C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\refint\IDFprojectC.dll
 C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\IDFprojectC.pdb
 C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\IDFprojectC.genruntimeconfig.cache
 C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\ref\IDFprojectC.dll
+C:\Users\User\source\repos\IDFprojectC\obj\Debug\net8.0\IDFprojectC.sourcelink.json
