@@ -14,9 +14,10 @@ namespace Idf
         public IntelligenceDepartment(Hamas Hamass)
         {
             hamas = Hamass;
-            AddMessage();
+            InitializationMessage();
         }
-        public void AddMessage()
+        //public static voidUpdateMessage
+        public void InitializationMessage()
         {
             Random rnd = new Random();
 

@@ -106,7 +106,7 @@ namespace Idf
 
             foreach (var item in IntelligenceDepartmentt.hamas.ListTerrorist)
             {
-                if (PointCalculation(item.Weapon, item.Rank) > MostDangerScore)
+                if (PointCalculation(item.Weapon, item.Rank) > MostDangerScore&&item.Status)
                 {
                     Mostmessagetero = item;
                     MostDangerScore = PointCalculation(item.Weapon, item.Rank);
@@ -165,6 +165,9 @@ namespace Idf
 
             Console.Write("Number of munitions for attack   ");
             PrintRed($" {input_uncorect}");
+
+            person.Status = false;
+
 
 
         }
