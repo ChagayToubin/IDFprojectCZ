@@ -106,7 +106,7 @@ namespace Idf
 
             foreach (var item in IntelligenceDepartmentt.hamas.ListTerrorist)
             {
-                if (PointCalculation(item.Weapon, item.Rank) > MostDangerScore)
+                if (PointCalculation(item.Weapon, item.Rank) > MostDangerScore&&item.Status)
                 {
                     Mostmessagetero = item;
                     MostDangerScore = PointCalculation(item.Weapon, item.Rank);
@@ -166,6 +166,9 @@ namespace Idf
             Console.Write("Number of munitions for attack   ");
             PrintRed($" {input_uncorect}");
 
+            person.Status = false;
+
+
 
         }
 
@@ -188,7 +191,7 @@ namespace Idf
         public static void initializationTerroist()
         {
 
-            //List<Terrorist> listTerrorist = new List<Terrorist>();
+          
 
             Terrorist person1 = new Terrorist("Tariq Ahmad", 2, true, new List<string> { "Knife", "Handgun" });
             listTerrorist.Add(person1);
@@ -290,8 +293,7 @@ namespace Idf
                 input_uncorect = IDF.Disarmament(unit, num);
             }
             return unit.CurrentAmmunitionQuantity;
-            //Console.Write("Number of munitions for attack    ");
-            //PrintRed(unit.CurrentAmmunitionQuantity.ToString());
+         
         }
 
 
