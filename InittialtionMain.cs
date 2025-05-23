@@ -26,18 +26,47 @@ namespace Idf
         }
         public static void Menu()
         {
-            ShowMainMenu();
+            Console.WriteLine("מאיזה מחלקה את עם אמן אז לחץ 1 מפקד מבצעי 2");
+            switch (Console.ReadLine())
+
+            {
+                case "1":
+                    ShowIntelligenceDepartmentMenu();
+                    break;
+                case "2":
+                    ShowMainMenu();
+                    break;
+                default:
+                    Menu();
+                    break;
+            }
+        }
+
+       public static void ShowIntelligenceDepartmentMenu()
+        {
+            Console.WriteLine();
+            IntelligenceDepartmentt.UpdateMessage(hamas);
+            Menu();
+         
         }
         static void ShowMainMenu()
         {
             PrintRed("========== IDF Strategic Operations Menu ==========");
+
             Console.WriteLine("Welcome, Commander. Prepare to lead your team with precision.");
+            
             Console.WriteLine("Choose an operation to begin:");
+            
             Console.WriteLine("1. Intelligence Analysis");
+            
             Console.WriteLine("2. Attack Readiness");
+            
             Console.WriteLine("3. Target Prioritization");
+            
             Console.WriteLine("4. Attack Execution");
+            
             Console.WriteLine("5. Exit");
+            
             Console.Write("Enter your choice (1-5): ");
 
             string input = Console.ReadLine();

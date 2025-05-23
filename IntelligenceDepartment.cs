@@ -16,7 +16,30 @@ namespace Idf
             hamas = Hamass;
             InitializationMessage();
         }
-        //public static voidUpdateMessage
+        public  void UpdateMessage(Hamas hamas)//צריך לקבל את המופע חמאס לזכור 
+        {
+            Console.WriteLine("enter a name to update informtion");
+            string name_terroist = Console.ReadLine();
+            
+            bool check = false;
+            foreach(var item in hamas.ListTerrorist)
+            {
+                check = (item.Name == name_terroist);
+                if (check)
+                {
+                    Console.WriteLine("enter a message");
+                    item.TimeLocatiom[DateTime.UtcNow.ToString()]=Console.ReadLine();
+                    Console.WriteLine("The update success ");
+                    break;
+                }
+            }
+            if (!check)
+            {
+                Console.WriteLine("לא נמצא מחבל בשם הזה");
+            }
+
+
+        }
         public void InitializationMessage()
         {
             Random rnd = new Random();
@@ -34,7 +57,7 @@ namespace Idf
             foreach (var item in hamas.ListTerrorist)
             {
                 conver = DateTime.UtcNow.ToString();
-                Thread.Sleep(100);
+                Thread.Sleep(123);
                 item.TimeLocatiom[conver] = message[rnd.Next(0, 4)];
 
             }
