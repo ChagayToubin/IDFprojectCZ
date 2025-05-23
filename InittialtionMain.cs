@@ -26,7 +26,8 @@ namespace Idf
         }
         public static void Menu()
         {
-            Console.WriteLine("מאיזה מחלקה את עם אמן אז לחץ 1 מפקד מבצעי 2");
+            PrintRed("Welcome to the military system");
+            Console.WriteLine("For the Intelligence Department, click 1 \r\nFor the Operations Department, click 2");
             switch (Console.ReadLine())
 
             {
@@ -93,7 +94,7 @@ namespace Idf
 
                     Console.ReadKey();
                     Console.Clear();
-                    ShowMainMenu();
+                    Menu();
                     break;
 
             }
@@ -297,11 +298,11 @@ namespace Idf
             IDF.AddAttackUnit(new AttackUnits("f16", 500, 8));
             IDF.AddAttackUnit(new AttackUnits("zik", 50, 3));
             IDF.AddAttackUnit(new AttackUnits("M109 Artillery", 500, 1));
-            foreach (var i in IDF.AtackUnits)
-            {
+            //foreach (var i in IDF.AtackUnits)
+            //{
 
-                Console.WriteLine(i.TypeUnit);
-            }
+            //    Console.WriteLine(i.TypeUnit);
+            //}
         }
         public static int AbsorptionOfArmaments(AttackUnits unit)
         {

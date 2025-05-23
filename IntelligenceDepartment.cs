@@ -35,7 +35,7 @@ namespace Idf
             }
             if (!check)
             {
-                Console.WriteLine("לא נמצא מחבל בשם הזה");
+                Console.WriteLine("No terrorist by that name was found.");
             }
 
 
@@ -61,11 +61,7 @@ namespace Idf
                 item.TimeLocatiom[conver] = message[rnd.Next(0, 4)];
 
             }
-            //foreach(var item in hamas.ListTerrorist)
-            //{
-            //    Console.WriteLine(item.TimeLocatiom.First().Key +" " + item.TimeLocatiom.First().Value);
-            //}
-            //hamas.ListTerrorist[2].TimeLocatiom.First().Value.Add("check if work");check if work  
+           
         }
 
     }
