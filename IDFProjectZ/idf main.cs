@@ -46,7 +46,7 @@ namespace Idf
             return AtackUnits[0];
         }
 
-        public bool Disarmament(AttackUnits unit, int num_armaments)
+        public bool Subarmament(AttackUnits unit, int num_armaments)
         {
             if (ArmamentCapacityTest(unit, num_armaments))
             {
@@ -72,7 +72,7 @@ namespace Idf
             return (unit.CurrentAmmunitionQuantity - num_armaments) >= 0 ? true : false;
         }
 
-        public bool ReduceFuel(AttackUnits unit, int fuel_use)
+        public bool SubFuel(AttackUnits unit, int fuel_use)
         {
             if (unit.FuelSupply - fuel_use >= 0)
             {

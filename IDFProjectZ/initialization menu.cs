@@ -193,8 +193,9 @@ namespace Idf
 
             string location = person.TimeLocatiom.Last().Value; //מצפה לקבל את המיקום של המחבל המיועד לתקיפה
             AttackUnits SelectedUnit = IDF.SelectUnitByLocation(location); //מקבל את האבייקט של כלי התקיפה
-            Console.WriteLine(($" Attack tool to use {SelectedUnit.TypeUnit}"));
-            int input_corect = AbsorptionOfArmaments(SelectedUnit);
+            Console.WriteLine(($"Attack tool to use {SelectedUnit.TypeUnit}"));
+            int CurrentArmaments = AbsorptionOfArmaments(SelectedUnit);
+            int CurrentFuel = AbsorptionOfFuel(SelectedUnit);
 
             PrintRed("+-----------------ATTACK-------------------+");
             Console.Write("The attack will be launched by    ");
@@ -210,7 +211,12 @@ namespace Idf
             PrintRed(DateTime.UtcNow.ToString());
 
             Console.Write("Number of munitions for attack   ");
-            PrintRed($" {input_corect} \n");
+            PrintRed($" {CurrentArmaments}");
+
+            Console.Write("Liters of fuel remaining:   ");
+            PrintRed($" {CurrentFuel} \n");
+
+
 
             person.Status = false;
         }
@@ -333,13 +339,24 @@ namespace Idf
             {
                 Console.WriteLine("enter number of Armaments to use");
                 int num = int.Parse(Console.ReadLine());
-                input_corect = IDF.Disarmament(unit, num);
+                input_corect = IDF.Subarmament(unit, num);
             }
             return unit.CurrentAmmunitionQuantity;
 
         }
 
+        public static int AbsorptionOfFuel(AttackUnits unit)
+        {
+            bool input_corect = false;
+            while (!input_corect)
+            {
+                Console.WriteLine("enter number of fuel to use");
+                int num = int.Parse(Console.ReadLine());
+                input_corect = IDF.SubFuel(unit, num);
+            }
+            return unit.FuelSupply;
 
+        }
 
 
     }
