@@ -1,9 +1,11 @@
 ﻿
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Idf;
 
 namespace Idf
 {
@@ -27,20 +29,38 @@ namespace Idf
         }
         public static void Menu()
         {
-            PrintRed("Welcome to the military system");
-            Console.WriteLine("For the Intelligence Department, click 1 \r\nFor the Operations Department, click 2");
-            switch (Console.ReadLine())
-
+            bool flag = true;
+            while (flag)
             {
-                case "1":
-                    ShowIntelligenceDepartmentMenu();
-                    break;
-                case "2":
-                    ShowMainMenu();
-                    break;
-                default:
-                    Menu();
-                    break;
+                PrintRed("Welcome to the military system");
+                Console.WriteLine("For the Operations Department, click 1 \r\nFor the update data, click 2 \r\nfor the exit, click 3");
+                switch (Console.ReadLine())
+
+                {
+                    case "1":
+                        ShowMainMenu();
+                        break;
+                    case "2":
+                        Console.WriteLine("press 1 to Intelligence Department \npress 2 To the Attack Units Department");
+                        switch (Console.ReadLine())
+                        {
+                            case "1":
+                                ShowIntelligenceDepartmentMenu();
+                                break;
+                            case "2":
+                                Console.WriteLine("Enter the name of the unit you want to add or change.");
+                                string unit = Console.ReadLine();
+                                IDF.ChanegingAttackUnit(unit);
+                                break;
+                        }
+                        break;
+                    case "3":
+                        flag = false;
+                        break;
+                    default:
+                        Menu();
+                        break;
+                }
             }
         }
 
@@ -48,9 +68,14 @@ namespace Idf
         {
             Console.WriteLine();
             IntelligenceDepartmentt.UpdateMessage(hamas);
-            Menu();
+        }
+        
+        public static void ChangingAttackUnitAttributes()
+        {
+
 
         }
+
         static void ShowMainMenu()
         {
             PrintRed("========== IDF Strategic Operations Menu ==========");
@@ -59,8 +84,6 @@ namespace Idf
             bool flag = true;
             while (flag)
             {
-
-
                 Console.WriteLine("Choose an operation to begin:");
 
                 Console.WriteLine("1. Intelligence Analysis");
@@ -168,8 +191,6 @@ namespace Idf
         {
             Terrorist person = TheMostDangerous();
 
-
-
             string location = person.TimeLocatiom.Last().Value; //מצפה לקבל את המיקום של המחבל המיועד לתקיפה
             AttackUnits SelectedUnit = IDF.SelectUnitByLocation(location); //מקבל את האבייקט של כלי התקיפה
             Console.WriteLine(($" Attack tool to use {SelectedUnit.TypeUnit}"));
@@ -192,9 +213,6 @@ namespace Idf
             PrintRed($" {input_corect} \n");
 
             person.Status = false;
-
-
-
         }
 
 
