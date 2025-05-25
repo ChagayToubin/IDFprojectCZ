@@ -14,7 +14,7 @@ namespace Idf
 
         public List<string> Weapon { get; set; } = new List<string>();
 
-        public Dictionary<string,string> TimeLocatiom { get; set; } = new Dictionary<string, string>();//אמרנו שמפתח יהיה זמן כך יהיה ושנה מהכל ובערך יהיה הודעה עם מיקום
+        public Dictionary<string, string> TimeLocatiom { get; set; } = new Dictionary<string, string>();//אמרנו שמפתח יהיה זמן כך יהיה ושנה מהכל ובערך יהיה הודעה עם מיקום
         public Terrorist(string name, int rank, bool status, List<string> weapon)
         {
             Name = name;

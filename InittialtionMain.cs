@@ -1,8 +1,11 @@
-﻿using System;
+﻿
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Idf;
 
 namespace Idf
 {
@@ -26,82 +29,107 @@ namespace Idf
         }
         public static void Menu()
         {
-            PrintRed("Welcome to the military system");
-            Console.WriteLine("For the Intelligence Department, click 1 \r\nFor the Operations Department, click 2");
-            switch (Console.ReadLine())
-
+            bool flag = true;
+            while (flag)
             {
-                case "1":
-                    ShowIntelligenceDepartmentMenu();
-                    break;
-                case "2":
-                    ShowMainMenu();
-                    break;
-                default:
-                    Menu();
-                    break;
+                PrintRed("Welcome to the military system");
+                Console.WriteLine("For the Operations Department, click 1 \r\nFor the update data, click 2 \r\nfor the exit, click 3");
+                switch (Console.ReadLine())
+
+                {
+                    case "1":
+                        ShowMainMenu();
+                        break;
+                    case "2":
+                        Console.WriteLine("press 1 to Intelligence Department \npress 2 To the Attack Units Department");
+                        switch (Console.ReadLine())
+                        {
+                            case "1":
+                                ShowIntelligenceDepartmentMenu();
+                                break;
+                            case "2":
+                                Console.WriteLine("Enter the name of the unit you want to add or change.");
+                                string unit = Console.ReadLine();
+                                IDF.ChanegingAttackUnit(unit);
+                                break;
+                        }
+                        break;
+                    case "3":
+                        flag = false;
+                        break;
+                    default:
+                        Menu();
+                        break;
+                }
             }
         }
 
-       public static void ShowIntelligenceDepartmentMenu()
+        public static void ShowIntelligenceDepartmentMenu()
         {
             Console.WriteLine();
             IntelligenceDepartmentt.UpdateMessage(hamas);
-            Menu();
-         
         }
+
+        public static void ChangingAttackUnitAttributes()
+        {
+
+
+        }
+
         static void ShowMainMenu()
         {
             PrintRed("========== IDF Strategic Operations Menu ==========");
 
             Console.WriteLine("Welcome, Commander. Prepare to lead your team with precision.");
-            
-            Console.WriteLine("Choose an operation to begin:");
-            
-            Console.WriteLine("1. Intelligence Analysis");
-            
-            Console.WriteLine("2. Attack Readiness");
-            
-            Console.WriteLine("3. Target Prioritization");
-            
-            Console.WriteLine("4. Attack Execution");
-            
-            Console.WriteLine("5. Exit");
-            
-            Console.Write("Enter your choice (1-5): ");
-
-            string input = Console.ReadLine();
-
-            switch (input)
+            bool flag = true;
+            while (flag)
             {
-                case "1":
-                    TheMostMessages();
-                    break;
-                case "2":
-                    PrepareUnits();
-                    break;
-                case "3":
-                    object d = TheMostDangerous();
-                    break;
-                case "4":
-                    ExecuteStrike();
-                    break;
-                case "5":
-                    Console.WriteLine("Exiting. Stay sharp, Commander.");
-                    break;
-                default:
-                    Console.WriteLine("Invalid choice. Try again.");
+                Console.WriteLine("Choose an operation to begin:");
 
-                    Console.ReadKey();
-                    Console.Clear();
-                    Menu();
-                    break;
+                Console.WriteLine("1. Intelligence Analysis");
+
+                Console.WriteLine("2. Attack Readiness");
+
+                Console.WriteLine("3. Target Prioritization");
+
+                Console.WriteLine("4. Attack Execution");
+
+                Console.WriteLine("5. Exit");
+
+                Console.Write("Enter your choice (1-5): ");
+
+                string input = Console.ReadLine();
+
+                switch (input)
+                {
+                    case "1":
+                        TheMostMessages();
+                        break;
+                    case "2":
+                        PrepareUnits();
+                        break;
+                    case "3":
+                        TheMostDangerous();
+                        break;
+                    case "4":
+                        ExecuteStrike();
+                        break;
+                    case "5":
+                        Console.WriteLine("Exiting. Stay sharp, Commander.");
+                        flag = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Try again.");
+
+                        Console.ReadKey();
+                        Console.Clear();
+                        Menu();
+                        break;
+
+                }
+
 
             }
-            Console.ReadKey();
-            Console.Clear();
-            ShowMainMenu();
-
         }
         //1
         static void TheMostMessages()
@@ -117,7 +145,7 @@ namespace Idf
                     Mostmessagetero = item;
                 }
             }
-            Console.WriteLine(Mostmessagetero.Name);
+            Console.WriteLine(Mostmessagetero.Name + "\n");
         }
         //2
         static void PrepareUnits()
@@ -155,21 +183,19 @@ namespace Idf
                 }
                 return calculation * Rank;
             }
-            Console.WriteLine("the target of the attack" + " " + Mostmessagetero.Name + "risk level" + MostDangerScore);
+            Console.WriteLine("the target of the attack" + " " + Mostmessagetero.Name + "risk level" + MostDangerScore + "\n");
             return Mostmessagetero;
         }
         //4
         static void ExecuteStrike()
         {
             Terrorist person = TheMostDangerous();
-            Console.Clear();
-
 
             string location = person.TimeLocatiom.Last().Value; //מצפה לקבל את המיקום של המחבל המיועד לתקיפה
             AttackUnits SelectedUnit = IDF.SelectUnitByLocation(location); //מקבל את האבייקט של כלי התקיפה
-            Console.WriteLine(($" Attack tool to use {SelectedUnit.TypeUnit}"));
-            int input_uncorect = AbsorptionOfArmaments(SelectedUnit);
-
+            Console.WriteLine(($"Attack tool to use {SelectedUnit.TypeUnit}"));
+            int CurrentArmaments = AbsorptionOfArmaments(SelectedUnit);
+            int CurrentFuel = AbsorptionOfFuel(SelectedUnit);
 
             PrintRed("+-----------------ATTACK-------------------+");
             Console.Write("The attack will be launched by    ");
@@ -185,12 +211,14 @@ namespace Idf
             PrintRed(DateTime.UtcNow.ToString());
 
             Console.Write("Number of munitions for attack   ");
-            PrintRed($" {input_uncorect}");
+            PrintRed($" {CurrentArmaments}");
+
+            Console.Write("Liters of fuel remaining:   ");
+            PrintRed($" {CurrentFuel} \n");
+
+
 
             person.Status = false;
-
-
-
         }
 
 
@@ -216,7 +244,7 @@ namespace Idf
 
             Terrorist person1 = new Terrorist("Tariq Ahmad", 2, true, new List<string> { "Knife", "Handgun" });
             listTerrorist.Add(person1);
-            Terrorist person2 = new Terrorist("Omar Ali", 5, true, new List<string> { "AK-47" });
+            Terrorist person2 = new Terrorist("www", 5, true, new List<string> { "AK-47" });
             listTerrorist.Add(person2);
             Terrorist person3 = new Terrorist("Khaled Fadi", 100, true, new List<string> { "M16", "Knife", "AK-47" });
             listTerrorist.Add(person3);
@@ -306,18 +334,29 @@ namespace Idf
         }
         public static int AbsorptionOfArmaments(AttackUnits unit)
         {
-            bool input_uncorect = false;
-            while (!input_uncorect)
+            bool input_corect = false;
+            while (!input_corect)
             {
                 Console.WriteLine("enter number of Armaments to use");
                 int num = int.Parse(Console.ReadLine());
-                input_uncorect = IDF.Disarmament(unit, num);
+                input_corect = IDF.Subarmament(unit, num);
             }
             return unit.CurrentAmmunitionQuantity;
 
         }
 
+        public static int AbsorptionOfFuel(AttackUnits unit)
+        {
+            bool input_corect = false;
+            while (!input_corect)
+            {
+                Console.WriteLine("enter number of fuel to use");
+                int num = int.Parse(Console.ReadLine());
+                input_corect = IDF.SubFuel(unit, num);
+            }
+            return unit.FuelSupply;
 
+        }
 
 
     }
@@ -325,6 +364,3 @@ namespace Idf
 
 
 }
-
-
-
