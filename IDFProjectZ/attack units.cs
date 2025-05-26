@@ -27,7 +27,7 @@ namespace Idf
             CurrentAmmunitionQuantity = currentAmmunitionQuantity;
             AttacksAtSameTime = attacksAtSameTime;
             PoweredBy = poweredBy;
-            if (typeUnit == "f16")
+            if (TypeUnit == "f16")
             {
                 TypeBomb = "0.5 - 1 KG";
                 EffectiveAgainst.Add(Locations[0]);
@@ -35,7 +35,7 @@ namespace Idf
                 MaximumArmaments = 8;
 
             }
-            else if (typeUnit == "Hermes 460" || typeUnit == "zik")
+            else if (TypeUnit == "Hermes 460" || TypeUnit == "zik")
             {
                 TypeBomb = "";
                 EffectiveAgainst.Add(Locations[1]);

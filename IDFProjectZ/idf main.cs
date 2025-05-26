@@ -62,9 +62,19 @@ namespace Idf
             }
         }
 
-        public void AddingArmaments(AttackUnits unit, int num_armaments)
+        public bool AddingArmaments(AttackUnits unit, int num_armaments)
         {
-            unit.CurrentAmmunitionQuantity += num_armaments;
+                if (unit.CurrentAmmunitionQuantity + num_armaments <= unit.MaximumArmaments)
+                {
+                    unit.CurrentAmmunitionQuantity += num_armaments;
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine($"There is already {unit.CurrentAmmunitionQuantity} ammunition and you are trying to add {num_armaments} ammunition.\r\nNote that the unit attack can hold a maximum of {unit.MaximumArmaments} ammunition:");
+                    return false;                
+                }
+            
         }
 
         public bool ArmamentCapacityTest(AttackUnits unit, int num_armaments)
@@ -118,24 +128,48 @@ namespace Idf
                     unit = i;
                 }
             }
-            Console.WriteLine("press 1 to create a new attack unit\npress 2 to add fuel\npress 3 to add armaments");
-            switch (Console.ReadLine())
-            {
-                case "1":
-                    AttackUnits New_unit = CreateAttackUnit(unit_name);
-                    AddAttackUnit(New_unit);
-                    break;
+            bool flag = false;
+            while (!flag)
+            { 
+                Console.WriteLine("press 1 to create a new attack unit\npress 2 to add fuel \npress 3 to add armaments \npress 4 to sub fuel \npress 5 to sub armaments \npress 6 to exit");
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        AttackUnits New_unit = CreateAttackUnit(unit_name);
+                        AddAttackUnit(New_unit);
+                        flag = true;
+                        break;
 
-                case "2":
-                    Console.WriteLine("enter nummber of litter");
-                    AddingFuel(unit, int.Parse(Console.ReadLine()));
-                    break;
+                    case "2":
+                        Console.WriteLine("enter nummber of litter");
+                        AddingFuel(unit, int.Parse(Console.ReadLine()));
+                        flag = true;
+                        break;
 
-                case "3":
-                    Console.WriteLine("enter a number of armaments");
-                    AddingArmaments(unit, int.Parse(Console.ReadLine()));
-                    break;
+                    case "3":
+                        Console.WriteLine("enter a number of armaments. press 0 to exit");
+                        flag = AddingArmaments(unit, int.Parse(Console.ReadLine()));
+                        break;
 
+                    case "4":
+                        Console.WriteLine("enter how nach to sub");
+                        flag = SubFuel(unit, int.Parse(Console.ReadLine()));
+                        break;
+
+                    case "5":
+                        Console.WriteLine("enter how nach to sub");
+                        flag = Subarmament(unit, int.Parse(Console.ReadLine()));
+                        break;
+
+                    case "6":
+                        flag = true;
+                        break;
+
+                }
+            if (flag)
+                {
+                    Console.WriteLine("The operation was successful.");
+                }
             }
         }
     }

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Idf;
 
 namespace Idf
 {
@@ -35,7 +34,6 @@ namespace Idf
                 PrintRed("Welcome to the military system");
                 Console.WriteLine("For the Operations Department, click 1 \r\nFor the update data, click 2 \r\nfor the exit, click 3");
                 switch (Console.ReadLine())
-
                 {
                     case "1":
                         ShowMainMenu();
@@ -58,7 +56,6 @@ namespace Idf
                         flag = false;
                         break;
                     default:
-                        Menu();
                         break;
                 }
             }

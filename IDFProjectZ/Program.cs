@@ -12,8 +12,6 @@ namespace Idf
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, Weweworld!");
-
             InittialtionMain start = new InittialtionMain();
 
         }
