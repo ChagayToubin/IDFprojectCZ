@@ -63,6 +63,53 @@ namespace Idf
             }
 
         }
+       public static void TheMostMessages()
+        {
+            Terrorist Mostmessagetero = Manager.IntelligenceDepartmentt.hamas.ListTerrorist[0];
+            int countTMost = 0;
 
+            foreach (var item in Manager.IntelligenceDepartmentt.hamas.ListTerrorist)
+            {
+                if (countTMost < item.TimeLocatiom.Count)
+                {
+                    countTMost = item.TimeLocatiom.Count;
+                    Mostmessagetero = item;
+                }
+            }
+            Console.WriteLine(Mostmessagetero.Name + "\n");
+        }
+        public static Terrorist TheMostDangerous()
+        {
+            Terrorist Mostmessagetero = Manager.IntelligenceDepartmentt.hamas.ListTerrorist[0];
+            int MostDangerScore = 0;
+
+            foreach (var item in Manager.IntelligenceDepartmentt.hamas.ListTerrorist)
+            {
+                if (PointCalculation(item.Weapon, item.Rank) > MostDangerScore && item.Status)
+                {
+                    Mostmessagetero = item;
+                    MostDangerScore = PointCalculation(item.Weapon, item.Rank);
+                }
+            }
+            static int PointCalculation(List<string> Weapon, int Rank)
+            {
+                int calculation = 0;
+                if (Weapon.Contains("Knife"))
+                {
+                    calculation += 1;
+                }
+                if (Weapon.Contains("Handgun"))
+                {
+                    calculation += 2;
+                }
+                if ((Weapon.Contains("AK-47") || Weapon.Contains("M16")))
+                {
+                    calculation += 3;
+                }
+                return calculation * Rank;
+            }
+            Console.WriteLine("the target of the attack" + " " + Mostmessagetero.Name + "risk level" + MostDangerScore + "\n");
+            return Mostmessagetero;
+        }
     }
 }
