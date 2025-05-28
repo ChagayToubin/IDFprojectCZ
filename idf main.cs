@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace Idf
 {
     public class IdfMain
@@ -107,6 +106,10 @@ namespace Idf
             AttackUnits NewUnit = new AttackUnits(Type_unit, fuel, armaments);
             return NewUnit;
         }
+        public static void PrepareUnits()
+        {
+            Manager.IDF.ShowAvailableUnits();
+        }
 
         public void ChanegingAttackUnit(string unit_name)
         {
@@ -137,6 +140,65 @@ namespace Idf
                     break;
 
             }
+
         }
+       public static void ExecuteStrike()
+        {
+            Terrorist person = IntelligenceDepartment.TheMostDangerous();
+
+            string location = person.TimeLocatiom.Last().Value; //מצפה לקבל את המיקום של המחבל המיועד לתקיפה
+            AttackUnits SelectedUnit = Manager.IDF.SelectUnitByLocation(location); //מקבל את האבייקט של כלי התקיפה
+            Console.WriteLine(($"Attack tool to use {SelectedUnit.TypeUnit}"));
+            int CurrentArmaments = AbsorptionOfArmaments(SelectedUnit);
+            int CurrentFuel = AbsorptionOfFuel(SelectedUnit);
+
+            MENU.PrintRed("+-----------------ATTACK-------------------+");
+            Console.Write("The attack will be launched by    ");
+            MENU.PrintRed(SelectedUnit.TypeUnit);
+
+            Console.Write("Recent intelligence announcements   ");
+            MENU.PrintRed(person.TimeLocatiom.Last().Value);
+
+            Console.Write("The terrorist  for the attack  ");
+            MENU.PrintRed(person.Name);
+
+            Console.Write("Attack planning time  ");
+            MENU.PrintRed(DateTime.UtcNow.ToString());
+
+            Console.Write("Number of munitions for attack   ");
+            MENU.PrintRed($" {CurrentArmaments}");
+
+            Console.Write("Liters of fuel remaining:   ");
+            MENU.PrintRed($" {CurrentFuel} \n");
+
+
+
+            person.Status = false;
+        }
+        public static int AbsorptionOfArmaments(AttackUnits unit)
+        {
+            bool input_corect = false;
+            while (!input_corect)
+            {
+                Console.WriteLine("enter number of Armaments to use");
+                int num = int.Parse(Console.ReadLine());
+                input_corect = Manager.IDF.Subarmament(unit, num);
+            }
+            return unit.CurrentAmmunitionQuantity;
+
+        }
+        public static int AbsorptionOfFuel(AttackUnits unit)
+        {
+            bool input_corect = false;
+            while (!input_corect)
+            {
+                Console.WriteLine("enter number of fuel to use");
+                int num = int.Parse(Console.ReadLine());
+                input_corect = Manager.IDF.SubFuel(unit, num);
+            }
+            return unit.FuelSupply;
+
+        }
+
     }
 }

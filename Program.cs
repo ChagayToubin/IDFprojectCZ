@@ -12,9 +12,9 @@ namespace Idf
 
         static void Main(string[] args)
         {
-            
+            Manager manager = new Manager();
 
-            InittialtionMain start = new InittialtionMain();
+
 
         }
     }
