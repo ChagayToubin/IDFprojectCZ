@@ -32,7 +32,7 @@ namespace Idf
                                 break;
                             case "2":
                                 Console.WriteLine("Enter the name of the unit you want to add or change.");
-                                string unit = Console.ReadLine();
+                                string unit = Console.ReadLine()!;
                                 Manager.IDF.ChanegingAttackUnit(unit);
                                 break;
                         }
@@ -95,7 +95,7 @@ namespace Idf
                         IntelligenceDepartment.TheMostDangerous();
                         break;
                     case "4":
-                        IdfMain.ExecuteStrike();
+                        flag = IdfMain.ExecuteStrike();
                         break;
                     case "5":
                         Console.WriteLine("Exiting. Stay sharp, Commander.");
