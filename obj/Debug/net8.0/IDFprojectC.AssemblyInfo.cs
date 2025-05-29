@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IDFprojectC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ddf68e629b6417f725a158c204ac38758c72e91")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3daa8cd51ddcb3fb5dd62097f6fbad53a7c920a3")]
 [assembly: System.Reflection.AssemblyProductAttribute("IDFprojectC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IDFprojectC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
