@@ -27,7 +27,7 @@ namespace Idf
         {
             foreach (var i in AtackUnits)
             {
-                if (i.CurrentAmmunitionQuantity > 0)
+                if (i.CurrentAmmunitionQuantity > 0 && i.FuelSupply>0)
                 {
                     Console.WriteLine(i.TypeUnit);
                 }
@@ -97,12 +97,12 @@ namespace Idf
             if (Type_unit == null)
             {
                 Console.WriteLine("enter type unit");
-                Type_unit = Console.ReadLine();
+                Type_unit = Console.ReadLine()!;
             }
             Console.WriteLine("enter fuel litters");
-            int fuel = int.Parse(Console.ReadLine());
+            int fuel = int.Parse(Console.ReadLine()!);
             Console.WriteLine("enter armamants");
-            int armaments = int.Parse(Console.ReadLine());
+            int armaments = int.Parse(Console.ReadLine()!);
             AttackUnits NewUnit = new AttackUnits(Type_unit, fuel, armaments);
             return NewUnit;
         }
@@ -131,18 +131,18 @@ namespace Idf
 
                 case "2":
                     Console.WriteLine("enter nummber of litter");
-                    AddingFuel(unit, int.Parse(Console.ReadLine()));
+                    AddingFuel(unit, int.Parse(Console.ReadLine()!));
                     break;
 
                 case "3":
                     Console.WriteLine("enter a number of armaments");
-                    AddingArmaments(unit, int.Parse(Console.ReadLine()));
+                    AddingArmaments(unit, int.Parse(Console.ReadLine()!));
                     break;
 
             }
 
         }
-       public static void ExecuteStrike()
+       public static bool ExecuteStrike()
         {
             Terrorist person = IntelligenceDepartment.TheMostDangerous();
 
@@ -150,6 +150,10 @@ namespace Idf
             AttackUnits SelectedUnit = Manager.IDF.SelectUnitByLocation(location); //מקבל את האבייקט של כלי התקיפה
             Console.WriteLine(($"Attack tool to use {SelectedUnit.TypeUnit}"));
             int CurrentArmaments = AbsorptionOfArmaments(SelectedUnit);
+            if (CurrentArmaments == -1)
+            {
+                return false;
+            }
             int CurrentFuel = AbsorptionOfFuel(SelectedUnit);
 
             MENU.PrintRed("+-----------------ATTACK-------------------+");
@@ -174,14 +178,19 @@ namespace Idf
 
 
             person.Status = false;
+            return true;
         }
         public static int AbsorptionOfArmaments(AttackUnits unit)
         {
             bool input_corect = false;
             while (!input_corect)
             {
-                Console.WriteLine("enter number of Armaments to use");
-                int num = int.Parse(Console.ReadLine());
+                Console.WriteLine("enter number of Armaments to use. press 0 for exit to menu");
+                int num = int.Parse(Console.ReadLine()!);
+                if (num == 0)
+                {
+                    return -1;
+                }
                 input_corect = Manager.IDF.Subarmament(unit, num);
             }
             return unit.CurrentAmmunitionQuantity;

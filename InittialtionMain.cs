@@ -18,7 +18,8 @@ namespace Idf
             initializationTerroist();
             initializationhamas();
             initializationIntelligenceDepartment();
-            AttackUnit();
+            initializationIdf();
+            initializationAttackUnit();
             
         }
         public static void initializationhamas()
@@ -29,9 +30,14 @@ namespace Idf
         {
             Manager.IntelligenceDepartmentt = new IntelligenceDepartment(Manager.hamas);
         }
-        public static void AttackUnit() //
+        
+        public static void initializationIdf()
         {
             Manager.IDF = new IdfMain("1948", "zamir");
+        }
+
+        public static void initializationAttackUnit() 
+        {
             Manager.IDF.AddAttackUnit(new AttackUnits("f16", 500, 8));
             Manager.IDF.AddAttackUnit(new AttackUnits("zik", 50, 3));
             Manager.IDF.AddAttackUnit(new AttackUnits("M109 Artillery", 500, 1));
