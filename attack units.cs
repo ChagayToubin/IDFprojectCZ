@@ -51,5 +51,53 @@ namespace Idf
             }
 
         }
+
+        //public class Builder
+        //{
+        //    public AttackUnits initUnit = new AttackUnits();
+
+
+        //    public Builder TypeUnit(int fuel)
+        //    {
+        //        initUnit.FuelSupply = fuel;
+        //        return this;
+        //    }
+
+        //    public Builder CurrentAmmunitionQuantity(int current_armaments)
+        //    {
+
+        //        initUnit.CurrentAmmunitionQuantity = current_armaments;
+        //        return this;
+        //    }
+
+        //    public Builder AttacksAtSameTime(int amount)
+        //    {
+        //        initUnit.AttacksAtSameTime = amount;
+        //        return this;
+        //    }
+
+        //    public Builder TypeUnit(string name)
+        //    {
+        //        initUnit.TypeUnit = name;
+        //        return this;
+        //    }
+
+        //    public Builder TypeBomb(string type_bomb)
+        //    {
+        //        initUnit.TypeBomb = type_bomb;
+        //        return this;
+        //    }
+
+        //    public Builder PoweredBy(string Powered_by)
+        //    {
+        //        initUnit.PoweredBy = Powered_by;
+        //        return this;
+        //    }
+
+        //    public AttackUnits Build()
+        //    {
+        //        return initUnit;
+        //    }
+        //}
     }
 }

@@ -12,6 +12,11 @@ namespace Idf
     {
         public static void Menu()
         {
+            MainMenu();
+        }
+
+        public static void MainMenu()
+        {
             bool flag = true;
             while (flag)
             {
@@ -24,18 +29,7 @@ namespace Idf
                         ShowMainMenu();
                         break;
                     case "2":
-                        Console.WriteLine("press 1 to Intelligence Department \npress 2 To the Attack Units Department");
-                        switch (Console.ReadLine())
-                        {
-                            case "1":
-                                ShowIntelligenceDepartmentMenu();
-                                break;
-                            case "2":
-                                Console.WriteLine("Enter the name of the unit you want to add or change.");
-                                string unit = Console.ReadLine()!;
-                                Manager.IDF.ChanegingAttackUnit(unit);
-                                break;
-                        }
+                        MainEditMenu();
                         break;
                     case "3":
                         flag = false;
@@ -46,6 +40,24 @@ namespace Idf
                 }
             }
         }
+
+        public static void MainEditMenu()
+        {
+            Console.WriteLine("press 1 to Intelligence Department \npress 2 To the Attack Units Department");
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    ShowIntelligenceDepartmentMenu();
+                    break;
+                case "2":
+                    Console.WriteLine("Enter the name of the unit you want to add or change.");
+                    string unit = Console.ReadLine()!;
+                    Manager.IDF.EditAttackUnit(unit);
+                    break;
+            }
+        }
+
+
 
         public static void ShowIntelligenceDepartmentMenu()
         {
@@ -123,7 +135,7 @@ namespace Idf
 
             do
             {
-                input = Console.ReadLine();
+                input = Console.ReadLine()!;
 
                 if (input.Length == 1 && char.IsDigit(input[0]))
                 {

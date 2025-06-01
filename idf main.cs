@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,11 +26,11 @@ namespace Idf
 
         public void ShowAvailableUnits()
         {
-            foreach (var i in AtackUnits)
+            foreach (var unit in AtackUnits)
             {
-                if (i.CurrentAmmunitionQuantity > 0 && i.FuelSupply>0)
+                if (CheckAvailaiballUnit(unit))
                 {
-                    Console.WriteLine(i.TypeUnit);
+                    Console.WriteLine(unit.TypeUnit);
                 }
             }
             Console.WriteLine("");
@@ -39,7 +40,7 @@ namespace Idf
         {
             foreach (var i in AtackUnits)
             {
-                if (i.EffectiveAgainst.Contains(location))
+                if (i.EffectiveAgainst.Contains(location) && i.FuelSupply>0 && i.CurrentAmmunitionQuantity > 0)
                     return i;
             }
             return AtackUnits[0];
@@ -100,7 +101,7 @@ namespace Idf
                 Type_unit = Console.ReadLine()!;
             }
             Console.WriteLine("enter fuel litters");
-            int fuel = int.Parse(Console.ReadLine()!);
+            int fuel = int.Parse(Console.ReadLine());
             Console.WriteLine("enter armamants");
             int armaments = int.Parse(Console.ReadLine()!);
             AttackUnits NewUnit = new AttackUnits(Type_unit, fuel, armaments);
@@ -111,7 +112,7 @@ namespace Idf
             Manager.IDF.ShowAvailableUnits();
         }
 
-        public void ChanegingAttackUnit(string unit_name)
+        public void EditAttackUnit(string unit_name)
         {
             AttackUnits unit = new AttackUnits("unit_name", 100, 2);
             foreach (var i in AtackUnits)
@@ -148,6 +149,12 @@ namespace Idf
 
             string location = person.TimeLocatiom.Last().Value; //מצפה לקבל את המיקום של המחבל המיועד לתקיפה
             AttackUnits SelectedUnit = Manager.IDF.SelectUnitByLocation(location); //מקבל את האבייקט של כלי התקיפה
+            if (!CheckAvailaiballUnit(SelectedUnit))
+            {
+                Console.WriteLine("No attack vehicle available. Please fill the attack vehicle with fuel and ammunition\n");
+                return false;
+            }
+
             Console.WriteLine(($"Attack tool to use {SelectedUnit.TypeUnit}"));
             int CurrentArmaments = AbsorptionOfArmaments(SelectedUnit);
             if (CurrentArmaments == -1)
@@ -207,6 +214,11 @@ namespace Idf
             }
             return unit.FuelSupply;
 
+        }
+
+        public static bool CheckAvailaiballUnit(AttackUnits unit)
+        {
+            return unit.FuelSupply > 0 && unit.CurrentAmmunitionQuantity > 0 ? true : false;
         }
 
     }
