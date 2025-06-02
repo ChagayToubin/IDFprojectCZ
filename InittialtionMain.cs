@@ -38,10 +38,9 @@ namespace Idf
 
         public static void initializationAttackUnit() 
         {
-            Manager.IDF.AddAttackUnit(new AttackUnits("f16", 500, 8));
-            Manager.IDF.AddAttackUnit(new AttackUnits("zik", 50, 3));
-            Manager.IDF.AddAttackUnit(new AttackUnits("M109 Artillery", 500, 1));
-           
+            Manager.IDF.AddAttackUnit(new F16.Builder().SetTypeUnit("f16").SetCurrentArmamants(8).SetFuel(500).Build());
+            Manager.IDF.AddAttackUnit(new Zik.Builder().SetTypeUnit("zik").SetCurrentArmamants(3).SetFuel(50).Build());
+            Manager.IDF.AddAttackUnit(new M109Artillery.Builder().SetTypeUnit("M109Artillery").SetCurrentArmamants(40).Build());
         }
         public static void initializationTerroist()
         {

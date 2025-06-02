@@ -10,7 +10,7 @@ namespace Idf
     {
         public string DateOfEstablishment { get; set; }
         public string CurrentCensus { get; set; }
-        public List<AttackUnits> AtackUnits { get; set; } = new List<AttackUnits>();
+        public List<AttackUnits> StrikeUnits { get; set; } = new List<AttackUnits>();
 
 
         public IdfMain(string date_of_establishment, string current_census)
@@ -21,12 +21,12 @@ namespace Idf
 
         public void AddAttackUnit(AttackUnits attack_unit)
         {
-            AtackUnits.Add(attack_unit);
+            StrikeUnits.Add(attack_unit);
         }
 
         public void ShowAvailableUnits()
         {
-            foreach (var unit in AtackUnits)
+            foreach (var unit in StrikeUnits)
             {
                 if (CheckAvailaiballUnit(unit))
                 {
@@ -38,38 +38,38 @@ namespace Idf
 
         public AttackUnits SelectUnitByLocation(string location)
         {
-            foreach (var i in AtackUnits)
+            foreach (var i in StrikeUnits)
             {
-                if (i.EffectiveAgainst.Contains(location) && i.FuelSupply>0 && i.CurrentAmmunitionQuantity > 0)
+                if (i.EffectiveAgainst.Contains(location) && i.FuelSupply>0 && i.CurrentArmamants > 0)
                     return i;
             }
-            return AtackUnits[0];
+            return StrikeUnits[0];
         }
 
         public bool Subarmament(AttackUnits unit, int num_armaments)
         {
             if (ArmamentCapacityTest(unit, num_armaments))
             {
-                unit.CurrentAmmunitionQuantity -= num_armaments;
+                unit.CurrentArmamants -= num_armaments;
 
                 return true;
             }
             else
             {
 
-                Console.WriteLine($"There are not enough ammunition for the attack!! There are only {unit.CurrentAmmunitionQuantity} ammunition and you want to use {num_armaments} ammunition.");
+                Console.WriteLine($"There are not enough ammunition for the attack!! There are only {unit.CurrentArmamants} ammunition and you want to use {num_armaments} ammunition.");
                 return false;
             }
         }
 
         public void AddingArmaments(AttackUnits unit, int num_armaments)
         {
-            unit.CurrentAmmunitionQuantity += num_armaments;
+            unit.CurrentArmamants += num_armaments;
         }
 
         public bool ArmamentCapacityTest(AttackUnits unit, int num_armaments)
         {
-            return (unit.CurrentAmmunitionQuantity - num_armaments) >= 0 ? true : false;
+            return (unit.CurrentArmamants - num_armaments) >= 0 ? true : false;
         }
 
         public bool SubFuel(AttackUnits unit, int fuel_use)
@@ -93,9 +93,9 @@ namespace Idf
             unit.FuelSupply += fuel_litters;
         }
 
-        AttackUnits CreateAttackUnit(string Type_unit = null)
+        public void CreateAttackUnit(string Type_unit = "")
         {
-            if (Type_unit == null)
+            if (Type_unit == "")
             {
                 Console.WriteLine("enter type unit");
                 Type_unit = Console.ReadLine()!;
@@ -104,8 +104,21 @@ namespace Idf
             int fuel = int.Parse(Console.ReadLine());
             Console.WriteLine("enter armamants");
             int armaments = int.Parse(Console.ReadLine()!);
-            AttackUnits NewUnit = new AttackUnits(Type_unit, fuel, armaments);
-            return NewUnit;
+            if (Type_unit.ToLower() == "f16")
+            {
+                Manager.IDF.AddAttackUnit(new F16.Builder().SetTypeUnit("f16").SetCurrentArmamants(armaments).SetFuel(fuel).Build());
+            }
+            else if (Type_unit.ToLower() == "zik")
+            {
+
+                Manager.IDF.AddAttackUnit(new Zik.Builder().SetTypeUnit("zik").SetCurrentArmamants(armaments).SetFuel(fuel).Build());
+
+            }
+            else if (Type_unit.ToLower() == "m109 artillery")
+            {
+                Manager.IDF.AddAttackUnit(new M109Artillery.Builder().SetTypeUnit("m109 artillery").SetCurrentArmamants(armaments).SetFuel(fuel).Build());
+            }
+
         }
         public static void PrepareUnits()
         {
@@ -114,8 +127,8 @@ namespace Idf
 
         public void EditAttackUnit(string unit_name)
         {
-            AttackUnits unit = new AttackUnits("unit_name", 100, 2);
-            foreach (var i in AtackUnits)
+            AttackUnits unit = new AttackUnits();
+            foreach (var i in Manager.IDF.StrikeUnits)
             {
                 if (i.TypeUnit == unit_name.ToLower())
                 {
@@ -126,8 +139,7 @@ namespace Idf
             switch (Console.ReadLine())
             {
                 case "1":
-                    AttackUnits New_unit = CreateAttackUnit(unit_name);
-                    AddAttackUnit(New_unit);
+                    CreateAttackUnit(unit_name);
                     break;
 
                 case "2":
@@ -200,7 +212,7 @@ namespace Idf
                 }
                 input_corect = Manager.IDF.Subarmament(unit, num);
             }
-            return unit.CurrentAmmunitionQuantity;
+            return unit.CurrentArmamants;
 
         }
         public static int AbsorptionOfFuel(AttackUnits unit)
@@ -218,7 +230,7 @@ namespace Idf
 
         public static bool CheckAvailaiballUnit(AttackUnits unit)
         {
-            return unit.FuelSupply > 0 && unit.CurrentAmmunitionQuantity > 0 ? true : false;
+            return unit.FuelSupply > 0 && unit.CurrentArmamants > 0 ? true : false;
         }
 
     }
